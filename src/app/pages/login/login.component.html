@@ -1,0 +1,30 @@
+<div class="container-fluid card login-container">
+  <div class="card-body">
+    <h3 class="card-title text-center">Login</h3>
+    <hr>
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage.length">
+      <p *ngFor="let error of errorMessage">{{ error }}</p>
+    </div>
+    <!-- <form>-->
+    <div class="form-group mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email"
+             placeholder="Enter valid email address" [(ngModel)]="authRequest.email">
+    </div>
+    <div class="form-group mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password"
+             placeholder="Enter your password" [(ngModel)]="authRequest.password">
+    </div>
+    <div class="d-flex justify-content-between mb-3">
+      <button (click)="onLogin()" type="button" class="btn btn-primary w-50 me-1">
+        <i class="fas fa-sign-in"></i> Sign in
+      </button>
+      <div>or</div>
+      <button (click)="onRegister()" type="button" class="btn btn-outline-primary w-50 ms-1">
+        <i class="fas fa-user-plus"></i> Register
+      </button>
+    </div>
+    <!--</form>-->
+  </div>
+</div>
