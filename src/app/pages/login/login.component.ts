@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AuthenticationRequest} from "../../services/models/authentication-request";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../services/services/authentication.service";
+import {TokenService} from "../../services/token/token.service";
 
 @Component({
   selector: 'app-login',
@@ -12,14 +13,18 @@ export class LoginComponent {
   authRequest: AuthenticationRequest = {email: '', password: ''};
   errorMessage: Array<string> = [];
 
-  constructor(private router: Router, private authService: AuthenticationService) {
+  constructor(
+    private router: Router,
+    private authService: AuthenticationService,
+    private tokenService: TokenService
+  ) {
   }
 
   onLogin() {
     this.errorMessage = [];
     this.authService.authenticate({body: this.authRequest}).subscribe({
       next: (response) => {
-        // todo - save the token to the localStorage
+        this.tokenService.token = response.token as string;
         this.router.navigate(['/books']);
       },
       error: (err) => {
