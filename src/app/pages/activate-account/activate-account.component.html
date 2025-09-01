@@ -1,0 +1,28 @@
+<div class="container" *ngIf="isSubmitted else activationForm">
+  <div class="activation-success" *ngIf="isActivationOkay else activationError">
+    <h2>Activation successful !</h2>
+    <p>{{ activationMessage }}</p>
+    <button type="button" class="btn btn-primary" (click)="onRedirectToLogin()">Login</button>
+  </div>
+
+  <ng-template #activationError>
+    <div class="activation-error">
+      <h2>Activation failed !</h2>
+      <p>{{ activationMessage }}</p>
+      <button type="button" class="btn btn-primary" (click)="isSubmitted = false">Try again</button>
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #activationForm>
+  <div class="container">
+    <div class="text-center">
+      <h3>Type your activation code</h3>
+      <code-input [isCodeHidden]="false"
+                  [codeLength]="6"
+                  [code]="'number'"
+                  (codeCompleted)="onCodeCompleted($event)"
+      ></code-input>
+    </div>
+  </div>
+</ng-template>

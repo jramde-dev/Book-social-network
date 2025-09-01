@@ -1,0 +1,29 @@
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25em;
+  margin: 15rem auto;
+
+  .activation-success, .activation-error {
+    text-align: center;
+  }
+
+  .activation-success{
+    color: green;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .activation-error{
+    color: red;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+}
