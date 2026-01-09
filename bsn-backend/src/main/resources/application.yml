@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: dev
+
+    # for file upload size permitted
+  servlet:
+    multipart:
+      max-file-size: 50MB
+
+  # Data producing
+springdoc:
+  default-produces-media-type: application/json
+
+server:
+  servlet:
+    context-path: /api/v1
