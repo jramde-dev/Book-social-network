@@ -30,7 +30,8 @@ export class LoginComponent {
       error: (err) => {
         console.log(err)
 
-        // businessValidationErrors and businessErrorMessage are same name of validationErrors declared in the backend
+        // businessValidationErrors and businessErrorMessage are same name
+        // of validationErrors declared in the backend
         if (err.error.businessValidationErrors) {
           this.errorMessage = err.error.businessValidationErrors;
         } else {

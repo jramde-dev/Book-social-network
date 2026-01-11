@@ -1,10 +1,12 @@
 <div class="container" *ngIf="isSubmitted else activationForm">
+  <!--If activation was successfully-->
   <div class="activation-success" *ngIf="isActivationOkay else activationError">
     <h2>Activation successful !</h2>
     <p>{{ activationMessage }}</p>
     <button type="button" class="btn btn-primary" (click)="onRedirectToLogin()">Login</button>
   </div>
 
+  <!--If activation fail-->
   <ng-template #activationError>
     <div class="activation-error">
       <h2>Activation failed !</h2>
@@ -14,6 +16,7 @@
   </ng-template>
 </div>
 
+<!--If activation form-->
 <ng-template #activationForm>
   <div class="container">
     <div class="text-center">
