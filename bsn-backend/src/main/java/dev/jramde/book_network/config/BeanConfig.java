@@ -52,9 +52,15 @@ public class BeanConfig {
         return authConfig.getAuthenticationManager();
     }
 
+    /**
+     * Cors definition which will filter requests coming from Angular client.
+     * By doing that, requests will filter by securityFilterChain defined in JrSecurityConfig.
+     *
+     * @return CorsFilter.
+     */
     @Bean
     public CorsFilter corsFilter() {
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        final UrlBasedCorsConfigurationSource urlSource = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowCredentials(true);
         corsConfig.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
@@ -64,17 +70,16 @@ public class BeanConfig {
                 HttpHeaders.ACCEPT,
                 HttpHeaders.AUTHORIZATION
         ));
-        corsConfig.setAllowedMethods(Arrays.asList(
-                "GET",
-                "POST",
-                "PUT",
-                "DELETE",
-                "PATCH"
-        ));
-        source.registerCorsConfiguration("/**", corsConfig);
-        return new CorsFilter(source);
+        corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH"));
+        urlSource.registerCorsConfiguration("/**", corsConfig);
+        return new CorsFilter(urlSource);
     }
 
+    /**
+     * Bean sur la classe d'audit.
+     *
+     * @return l'utilisateur qui a orchestré l'action.
+     */
     @Bean
     public AuditorAware<String> auditorAware() {
         return new ApplicationAuditAware(); // Our class we created above

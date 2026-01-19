@@ -36,8 +36,14 @@ public class JrSecurityConfig {
     // Bean declared in BeanConfig class
     private final AuthenticationProvider authenticationProvider;
 
+    /**
+     * Filter requests coming from client by using the internal corsFilter.
+     * @param http : HttpSecurity
+     * @return SecurityFilterChain
+     * @throws Exception when error occurs.
+     */
     @Bean
-    public SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> {

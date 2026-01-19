@@ -8,6 +8,10 @@ const routes: Routes = [
   {path: 'login', title: 'Login', component: LoginComponent},
   {path: 'register', title: 'Register', component: RegisterComponent},
   {path: 'activate-account', title: 'Activate Account', component: ActivateAccountComponent},
+  {
+    path: "books",
+    loadChildren: () => import("./modules/book/book.module").then(m => m.BookModule)
+  }
 ];
 
 @NgModule({

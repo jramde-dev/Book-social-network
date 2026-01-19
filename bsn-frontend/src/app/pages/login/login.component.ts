@@ -33,9 +33,12 @@ export class LoginComponent {
         // businessValidationErrors and businessErrorMessage are same name
         // of validationErrors declared in the backend
         if (err.error.businessValidationErrors) {
+          // If no field is filled, collect all the message errors.
           this.errorMessage = err.error.businessValidationErrors;
         } else {
           // If not a validation error, then catch the error message
+          // error is Angular default error
+          // businessErrorMessage is our backend error msg name
           this.errorMessage.push(err.error.businessErrorMessage);
         }
       }

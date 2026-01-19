@@ -1,12 +1,13 @@
+<!-- When user submit form, run this code -->
 <div class="container" *ngIf="isSubmitted else activationForm">
-  <!--If activation was successfully-->
+  <!-- If activation was successfully, display success message and button redirection -->
   <div class="activation-success" *ngIf="isActivationOkay else activationError">
     <h2>Activation successful !</h2>
     <p>{{ activationMessage }}</p>
     <button type="button" class="btn btn-primary" (click)="onRedirectToLogin()">Login</button>
   </div>
 
-  <!--If activation fail-->
+  <!--If activation fails, display error message and button-->
   <ng-template #activationError>
     <div class="activation-error">
       <h2>Activation failed !</h2>
@@ -16,7 +17,7 @@
   </ng-template>
 </div>
 
-<!--If activation form-->
+<!--If activation form not already submitted, display this form user -->
 <ng-template #activationForm>
   <div class="container">
     <div class="text-center">

@@ -8,9 +8,9 @@ import {AuthenticationService} from "../../services/services/authentication.serv
   styleUrls: ['./activate-account.component.scss']
 })
 export class ActivateAccountComponent {
-  activationMessage: string = '';
-  isActivationOkay: boolean = true;
-  isSubmitted: boolean = false;
+  activationMessage: string = ''; // Error message
+  isActivationOkay: boolean = true; // if the activation is okay or not
+  isSubmitted: boolean = false; // if the user has submitted the form
 
   constructor(
     private readonly router: Router,

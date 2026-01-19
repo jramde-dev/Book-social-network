@@ -74,7 +74,7 @@ public class AuthenticationService {
     }
 
     /**
-     * Send an email to the user to validate their account.
+     * Email the user to validate their account.
      *
      * @param user : user
      */
@@ -98,7 +98,7 @@ public class AuthenticationService {
      * @return activation code
      */
     private String generateAndSaveActivationToken(AppUser user) {
-        String generatedToken = generateAcitvationCode(6);
+        String generatedToken = generateActivationCode(6);
         Token token = Token.builder()
                 .token(generatedToken)
                 .createdAt(LocalDateTime.now())
@@ -115,7 +115,7 @@ public class AuthenticationService {
      * @param length : the length of the code
      * @return code in type of character
      */
-    private String generateAcitvationCode(int length) {
+    private String generateActivationCode(int length) {
         String characters = "0123456789";
         StringBuilder codeBuilder = new StringBuilder();
 
@@ -164,7 +164,6 @@ public class AuthenticationService {
 
         if (LocalDateTime.now().isAfter(userToken.getExpiredAt())) {
             sendValidationEmail(userToken.getUser());
-
             throw new RuntimeException("Token is expired. A new token is sent to the same email address.");
         }
 
