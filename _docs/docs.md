@@ -51,3 +51,6 @@ public class GlobalExceptionHandler {
 ```
 - En faisant `$ npm run api-gen`, nous disons à open api de traduire le contenu de openapi.json en service et les 
  mettre dans le dossier services.
+
+### Interceptors
+- Interceptor is like Spring Filter
