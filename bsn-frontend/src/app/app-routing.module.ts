@@ -8,6 +8,8 @@ const routes: Routes = [
   {path: 'login', title: 'Login', component: LoginComponent},
   {path: 'register', title: 'Register', component: RegisterComponent},
   {path: 'activate-account', title: 'Activate Account', component: ActivateAccountComponent},
+
+  // Mise en place du lazy loading avec les modules.
   {
     path: "books",
     loadChildren: () => import("./modules/book/book.module").then(m => m.BookModule)
