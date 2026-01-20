@@ -16,7 +16,6 @@ export class MenuComponent implements OnInit {
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach((link) => {
       const value = link.getAttribute("href");
-      console.log(value);
       if (window.location.href.endsWith(link.getAttribute("href") || "")) {
         link.classList.add("active");
       }
