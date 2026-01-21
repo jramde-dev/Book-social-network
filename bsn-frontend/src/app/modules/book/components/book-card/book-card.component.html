@@ -18,7 +18,8 @@
     <!-- Footer de la card -->
     <div class="card-footer d-flex gap-2 justify-content-between align-items-center">
       <div class="d-flex gap-2">
-        5 stars
+        <app-rating [rating]="book.rate || 0"></app-rating>
+        <span class="fw-bold text-danger-emphasis" *ngIf="book.rate || 0 > 0">{{ book.rate }}</span>
       </div>
 
       <!-- Public actions -->
