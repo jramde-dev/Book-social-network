@@ -81,7 +81,7 @@ public class BeanConfig {
      * @return l'utilisateur qui a orchestré l'action.
      */
     @Bean
-    public AuditorAware<String> auditorAware() {
+    public AuditorAware<Integer> auditorAware() {
         return new ApplicationAuditAware(); // Our class we created above
     }
 }

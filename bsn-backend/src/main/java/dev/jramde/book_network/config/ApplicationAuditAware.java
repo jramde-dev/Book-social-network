@@ -16,13 +16,13 @@ import java.util.Optional;
  * To make it work, we need to declare this class as a bean (in ApplicationConfig for example),
  * and then provide the bean name as attribute to the @EnableJpaAuditing annotation.
  */
-public class ApplicationAuditAware implements AuditorAware<String> {
+public class ApplicationAuditAware implements AuditorAware<Integer> {
     /**
      * Get the current user's email.
      * @return Optional of the current user's email
      */
     @Override
-    public Optional<String> getCurrentAuditor() {
+    public Optional<Integer> getCurrentAuditor() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated()
                 || authentication instanceof AnonymousAuthenticationToken) {
@@ -30,6 +30,6 @@ public class ApplicationAuditAware implements AuditorAware<String> {
         }
 
         AppUser userPrincipal = (AppUser) authentication.getPrincipal();
-        return Optional.ofNullable(userPrincipal.getEmail());
+        return Optional.ofNullable(userPrincipal.getId());
     }
 }

@@ -26,6 +26,7 @@ export class BookListComponent implements OnInit {
   findAllBooks() {
     this.bookService.findAllBooks({page: this.page, size: this.size}).subscribe({
       next: (books: PageResponseBookResponse) => {
+        console.table(books.content);
         this.bookResponse = books;
       }
     })
