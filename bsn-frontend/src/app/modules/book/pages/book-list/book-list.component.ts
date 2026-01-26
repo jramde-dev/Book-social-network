@@ -11,7 +11,7 @@ import {PageResponseBookResponse} from "../../../../services/models/page-respons
 export class BookListComponent implements OnInit {
   bookResponse: PageResponseBookResponse = {};
   page: number = 0;
-  size: number = 5;
+  size: number = 1;
 
   constructor(private bookService: BookService, private router: Router) {
   }
@@ -33,23 +33,28 @@ export class BookListComponent implements OnInit {
   }
 
   onGoToTheFirstPage() {
-
+    this.page = 0;
+    this.findAllBooks();
   }
 
   onGoToPreviousPage() {
-
+    this.page--;
+    this.findAllBooks();
   }
 
-  onGoToPage(index: number) {
-
+  onGoToPage(page: number) {
+    this.page = page;
+    this.findAllBooks();
   }
 
   onGoToNextPage() {
-
+    this.page++;
+    this.findAllBooks();
   }
 
   onGoToLastPage() {
-
+    this.page = this.bookResponse.totalPages as number - 1;
+    this.findAllBooks();
   }
 
   get isLastPage() : boolean {
