@@ -5,3 +5,47 @@
   <app-book-card [book]="book" *ngFor="let book of bookResponse.content"></app-book-card>
   <app-book-card [book]="book" *ngFor="let book of bookResponse.content"></app-book-card>
 </div>
+
+<!-- Pagination -->
+<div class="d-flex justify-content-center mt-3">
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <!-- Left navigation -->
+      <li class="page-item">
+        <a (click)="onGoToTheFirstPage()"
+           href="javascript:void(0)"
+           aria-label="Previous" class="page-link"
+           [class.disabled]="page == 0">
+          <i class="fa-solid fa-angles-left"></i>
+        </a>
+      </li>
+      <li class="page-item">
+        <a (click)="onGoToPreviousPage()"
+           href="javascript:void(0)"
+           aria-label="Previous"
+           class="page-link" [class.disabled]="page == 0">
+          <i class="fa-solid fa-angle-left"></i>
+        </a>
+      </li>
+
+      <!-- Go to a given page -->
+      <li class="page-item">
+        <a (click)="onGoToPage(0)" href="javascript:void(0)" aria-label="Previous" class="page-link">1</a>
+      </li>
+
+      <!-- Right navigation -->
+      <li class="page-item">
+        <a (click)="onGoToNextPage()" [class.disabled]="isLastPage"
+           href="javascript:void(0)" aria-label="Next" class="page-link">
+          <i class="fa-solid fa-angle-right"></i>
+        </a>
+      </li>
+      <li class="page-item">
+        <a (click)="onGoToLastPage()" [class.disabled]="isLastPage"
+           href="javascript:void(0)" aria-label="Previous" class="page-link">
+          <i class="fa-solid fa-angles-right"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
