@@ -9,6 +9,8 @@ import {BookResponse} from "../../../../services/models/book-response";
 export class BookCardComponent {
   private _book: BookResponse = {};
   private _bookCover: string | undefined;
+
+  // To show if it is the manager or not
   private _manager: boolean = false;
 
   // In order to communicate event with the parent

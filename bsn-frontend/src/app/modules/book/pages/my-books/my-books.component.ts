@@ -1,33 +1,31 @@
 import {Component, OnInit} from '@angular/core';
+import {PageResponseBookResponse} from "../../../../services/models/page-response-book-response";
 import {BookService} from "../../../../services/services/book.service";
 import {Router} from "@angular/router";
-import {PageResponseBookResponse} from "../../../../services/models/page-response-book-response";
 import {BookResponse} from "../../../../services/models/book-response";
 
 @Component({
-  selector: 'app-book-list',
-  templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.scss']
+  selector: 'app-my-books',
+  templateUrl: './my-books.component.html',
+  styleUrls: ['./my-books.component.scss']
 })
-export class BookListComponent implements OnInit {
+export class MyBooksComponent implements OnInit {
   bookResponse: PageResponseBookResponse = {};
   page: number = 0;
   size: number = 2;
-  message!: string;
-  level!: string;
 
   constructor(private bookService: BookService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.findAllBooks();
+    this.findAllBooksByOwner();
   }
 
   /**
    * Retrieve all the books available in the database.
    */
-  findAllBooks() {
-    this.bookService.findAllBooks({page: this.page, size: this.size}).subscribe({
+  findAllBooksByOwner() {
+    this.bookService.findAllBooksByOwner({page: this.page, size: this.size}).subscribe({
       next: (books: PageResponseBookResponse) => {
         this.bookResponse = books;
       }
@@ -36,45 +34,42 @@ export class BookListComponent implements OnInit {
 
   onGoToTheFirstPage() {
     this.page = 0;
-    this.findAllBooks();
+    this.findAllBooksByOwner();
   }
 
   onGoToPreviousPage() {
     this.page--;
-    this.findAllBooks();
+    this.findAllBooksByOwner();
   }
 
   onGoToPage(page: number) {
     this.page = page;
-    this.findAllBooks();
+    this.findAllBooksByOwner();
   }
 
   onGoToNextPage() {
     this.page++;
-    this.findAllBooks();
+    this.findAllBooksByOwner();
   }
 
   onGoToLastPage() {
     this.page = this.bookResponse.totalPages as number - 1;
-    this.findAllBooks();
+    this.findAllBooksByOwner();
   }
 
   get isLastPage(): boolean {
     return this.page == this.bookResponse.totalPages as number - 1;
   }
 
-  onBorrowBook(book: BookResponse) {
-    this.message = "";
-    this.bookService.borrowBook({"book-id": book.id as number}).subscribe({
-      next: () => {
-        this.level = "success";
-        this.message = "Book successfully added to your list."
-      },
-      error: (err) => {
-        console.log(err);
-        this.level="error";
-        this.message = err.error.businessErrorMessage;
-      }
-    })
+  archiveBook(response: BookResponse) {
+
+  }
+
+  shareBook(response: BookResponse) {
+
+  }
+
+  editBook(bookId: BookResponse) {
+    this.router.navigate(['books', bookId]);
   }
 }

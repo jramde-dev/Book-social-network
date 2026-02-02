@@ -1,8 +1,10 @@
-<h3>Books List</h3>
-<div *ngIf="message"
-     [class.alert-danger]="level === 'error'"
-     [class.alert-success]="level === 'success'"
-     class="alert">{{ message }}
+<div class="d-flex justify-content-between mt-2">
+  <h3>My Books List</h3>
+  <div class="d-flex justify-content-end">
+    <a routerLink="/books/manage" class="btn btn-outline-primary">
+      <i class="fas fa-plus"></i> New book
+    </a>
+  </div>
 </div>
 <hr>
 
@@ -10,7 +12,10 @@
 <div class="d-flex justify-content-start gap-2 flex-wrap">
   <app-book-card
     [book]="book"
-    (borrow)="onBorrowBook($event)"
+    [manager]="true"
+    (archive)="archiveBook($event)"
+    (share)="shareBook($event)"
+    (edit)="editBook($event)"
     *ngFor="let book of bookResponse.content">
   </app-book-card>
 </div>
