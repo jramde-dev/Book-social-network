@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from "./pages/main/main.component";
 import {BookListComponent} from "./pages/book-list/book-list.component";
 import {MyBooksComponent} from "./pages/my-books/my-books.component";
+import {ManageBookComponent} from "./pages/manage-book/manage-book.component";
 
 const routes: Routes = [
   {
@@ -11,7 +12,9 @@ const routes: Routes = [
     // Because we want to display everything inside the main component
     children: [
       {path: "", title: "Books", component: BookListComponent},
-      {path: "my-books", title: "My Books", component: MyBooksComponent}
+      {path: "my-books", title: "My Books", component: MyBooksComponent},
+      {path: "manage", title: "Book Management", component: ManageBookComponent},
+      {path: "manage/:bookId", title: "Manage Book", component: ManageBookComponent},
     ]
   }
 ];
