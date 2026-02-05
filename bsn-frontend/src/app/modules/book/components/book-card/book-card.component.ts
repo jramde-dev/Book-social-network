@@ -22,13 +22,22 @@ export class BookCardComponent {
   @Output() private edit: EventEmitter<BookResponse> = new EventEmitter<BookResponse>();
   @Output() private details: EventEmitter<BookResponse> = new EventEmitter<BookResponse>();
 
+  get book(): BookResponse {
+    return this._book;
+  }
+
   @Input()
   set book(value: BookResponse) {
     this._book = value;
   }
 
-  get book(): BookResponse {
-    return this._book;
+  // If there is no cover we display a default image
+  get bookCover(): string | undefined {
+    if (this._book.cover) {
+      const bookCover = this._book.cover;
+      return 'data:image/jpg;base64,' + bookCover;
+    }
+    return "https://images.unsplash.com/photo-1768124362942-3e4113f6f73e?q=80&w=784&auto";
   }
 
   get manager(): boolean {
@@ -38,15 +47,6 @@ export class BookCardComponent {
   @Input()
   set manager(value: boolean) {
     this._manager = value;
-  }
-
-  get bookCover(): string | undefined {
-    if (this._book.cover && !this._bookCover) {
-      const bookCover = this._book.cover;
-      this._bookCover = 'data:image/jpg;base64,' + bookCover;
-    }
-    return "https://images.unsplash.com/photo-1768124362942-3e4113f6f73e?q=80&w=784&auto=format" +
-      "&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
   }
 
   onShowDetails() {

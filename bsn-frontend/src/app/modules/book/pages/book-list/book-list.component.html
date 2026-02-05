@@ -9,9 +9,9 @@
 <!-- Books card -->
 <div class="d-flex justify-content-start gap-2 flex-wrap">
   <app-book-card
+    *ngFor="let book of bookResponse.content"
     [book]="book"
-    (borrow)="onBorrowBook($event)"
-    *ngFor="let book of bookResponse.content">
+    (borrow)="onBorrowBook($event)">
   </app-book-card>
 </div>
 

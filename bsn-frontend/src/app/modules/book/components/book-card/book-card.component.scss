@@ -4,6 +4,11 @@ div {
     min-height: 400px;
   }
 
+  .card-img-top {
+    height: 250px;
+    object-fit: cover;
+  }
+
   i {
     cursor: pointer;
   }
