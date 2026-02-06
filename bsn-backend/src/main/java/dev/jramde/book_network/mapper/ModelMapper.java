@@ -49,7 +49,7 @@ public class ModelMapper {
 
     public BorredBookResponse maps(BookTransactionHistory history) {
         return BorredBookResponse.builder()
-                .id(history.getId())
+                .id(history.getBook().getId())
                 .title(history.getBook().getTitle())
                 .author(history.getBook().getAuthor())
                 .isbn(history.getBook().getIsbn())

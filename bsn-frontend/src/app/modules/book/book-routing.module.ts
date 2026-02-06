@@ -5,6 +5,7 @@ import {BookListComponent} from "./pages/book-list/book-list.component";
 import {MyBooksComponent} from "./pages/my-books/my-books.component";
 import {ManageBookComponent} from "./pages/manage-book/manage-book.component";
 import {BorrowedBooksComponent} from "./pages/borrowed-books/borrowed-books.component";
+import {ReturnedBooksComponent} from "./pages/returned-books/returned-books.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       {path: "manage", title: "Book Management", component: ManageBookComponent},
       {path: "manage/:bookId", title: "Manage Book", component: ManageBookComponent},
       {path: "borrowed-books", title: "Borrowed Books", component: BorrowedBooksComponent},
+      {path: "returned-books", title: "Returned Books", component: ReturnedBooksComponent},
     ]
   }
 ];

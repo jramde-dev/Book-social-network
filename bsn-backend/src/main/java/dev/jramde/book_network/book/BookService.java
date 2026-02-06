@@ -259,8 +259,8 @@ public class BookService {
         }
 
         AppUser currentUser = (AppUser) connectedUser.getPrincipal();
-        if (Objects.equals(book.getOwner().getId(), currentUser.getId())) {
-            throw new OperationNotPermittedException("You cannot borrow or return your own book.");
+        if (!Objects.equals(book.getOwner().getId(), currentUser.getId())) {
+            throw new OperationNotPermittedException("You cannot return a book that you do not own.");
         }
 
         BookTransactionHistory bookTransactionHistory = bookTransactionHistoryRepository
