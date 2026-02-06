@@ -54,3 +54,6 @@ public class GlobalExceptionHandler {
 
 ### Interceptors
 - Interceptor is like Spring Filter
+
+### Angular : Guard, decode the token with @auth0/angular-jwt
+$ npm install @auth0/angular-jwt
