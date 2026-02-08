@@ -38,6 +38,17 @@ services:
     depends_on:
       - postgres # bsn-api start on running after postgres started running
 
+  # Config to run the frontend app
+  bsn-ui:
+    container_name: bsn-ui
+    image: bsn/bsn-ui:1.0.0
+    ports:
+      - 8080:80 # 8080 is the port we'll use; 80 is the nginx default port
+    networks:
+      - spring-demo
+    depends_on:
+      - bsn-api
+
 networks:
   spring-demo:
     driver: bridge
