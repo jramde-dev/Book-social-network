@@ -17,10 +17,10 @@ spring:
 
   # Mailing
   mail:
-    host: smtp.gmail.com
-    port: 465
-    username: restonspositifs2@gmail.com
-    password: ygyp vpty seya lhmg
+    host: ${EMAIL_HOSTNAME}
+    port: ${EMAIL_PORT}
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
     properties:
       mail:
         smtp:
@@ -31,6 +31,21 @@ spring:
         starttls:
           enable: true
     protocol: smtp
+#  mail:
+#    host: smtp.gmail.com
+#    port: 465
+#    username: restonspositifs2@gmail.com
+#    password: ygyp vpty seya lhmg
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          ssl:
+#            enable: true
+#            trust: "*"
+#        starttls:
+#          enable: true
+#    protocol: smtp
 
 application:
   security:
@@ -39,6 +54,10 @@ application:
   mailing:
     frontend:
       activation-url: http://localhost:4200/activate-account
+
+  # CORS : Localhost: Angular, Nginx; VPS: Backend, Frontend
+  cors:
+    origins: http://localhost:4200,http://localhost:8080,http://my_ip_address:8088,http://my_ip_address:8080
   file:
     upload:
       photos-output-path: ./uploads

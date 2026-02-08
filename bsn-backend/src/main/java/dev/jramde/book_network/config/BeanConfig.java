@@ -1,6 +1,7 @@
 package dev.jramde.book_network.config;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -17,7 +18,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -27,6 +27,9 @@ public class BeanConfig {
 
     // From security.core.userdetails
     private final UserDetailsService userDetailsService;
+
+    @Value("${application.cors.origins}")
+    private List<String> allowedOrigins;
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
@@ -63,16 +66,16 @@ public class BeanConfig {
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource urlSource = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowCredentials(true);
+        // corsConfig.setAllowCredentials(true);
         // corsConfig.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
-        corsConfig.setAllowedOrigins(List.of("http://localhost:4200", "http://localhost:8080"));
-        corsConfig.setAllowedHeaders(Arrays.asList(
-                HttpHeaders.ORIGIN,
-                HttpHeaders.CONTENT_TYPE,
-                HttpHeaders.ACCEPT,
-                HttpHeaders.AUTHORIZATION
-        ));
-        corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH"));
+        // corsConfig.setAllowedOrigins(List.of("http://localhost:4200", "http://localhost:8080"));
+        // corsConfig.setAllowedHeaders(Arrays.asList(
+        //         HttpHeaders.ORIGIN, HttpHeaders.CONTENT_TYPE, HttpHeaders.ACCEPT, HttpHeaders.AUTHORIZATION));
+        // corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH"));
+
+        corsConfig.setAllowedOrigins(allowedOrigins);
+        corsConfig.setAllowedHeaders(Arrays.asList("*")); // Not recommended
+        corsConfig.setAllowedMethods(Arrays.asList("*")); // Not recommended
         urlSource.registerCorsConfiguration("/**", corsConfig);
         return new CorsFilter(urlSource);
     }
