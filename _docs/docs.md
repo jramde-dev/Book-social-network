@@ -15,9 +15,6 @@ docker logs -f postgres-bsn
 ### 5. Tester la connexion
 docker exec -it postgres-bsn psql -U username -d bsndb
 
-### Install openapi-generator (inside ui project)
-- Copy swagger specification and add it in openapi.json
-
 ### Code input
 - **$ npm i angular-code-input**
 
@@ -40,7 +37,7 @@ public class GlobalExceptionHandler {
 - Copier toute la config et les endpoints générés et la coller dans un fichier openapi.json dans le src du frontend.
 
 #### Générer des services avec Swagger (Angular)
-- Installer le CLI `ng-openapi-gen`: npm install ng-openapi-gen
+- Installer le CLI `ng-openapi-gen`: $npm install ng-openapi-gen
 - Ajouter cette commande dans package.json :
 ```json
 {

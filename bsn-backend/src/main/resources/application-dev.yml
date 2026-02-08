@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5438/bsndb
+    url: jdbc:postgresql://localhost:5432/bsndb
     username: username
     password: password
     driver-class-name: org.postgresql.Driver
@@ -44,4 +44,6 @@ application:
       photos-output-path: ./uploads
 
 # Swagger local url
-# http://localhost:8080/api/v1/swagger-ui/index.html
+# http://localhost:8088/api/v1/swagger-ui/index.html
+server:
+  port: 8088

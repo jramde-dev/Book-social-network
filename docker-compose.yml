@@ -10,12 +10,12 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data  # Corrigé
     ports:
-      - "5438:5432"
+      - 5432:5432
     networks:
       - spring-demo
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U username -d bsndb"]
+      test: [ "CMD-SHELL", "pg_isready -U username -d bsndb" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -26,8 +26,17 @@ services:
     ports:
       - "1080:1080"
       - "1025:1025"
+
+  # Config for building api container
+  bsn-api:
+    container_name: bsn-api
+    image: bsn/bsn:1.0.0
+    ports:
+      - 8088:8088
     networks:
       - spring-demo
+    depends_on:
+      - postgres # bsn-api start on running after postgres started running
 
 networks:
   spring-demo:

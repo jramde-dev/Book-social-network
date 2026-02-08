@@ -16,12 +16,14 @@ WORKDIR /app
 COPY --from=build /build/target/bsn-backend-*.jar /app/
 
 ### Expose application port
-EXPOSE 8080
+EXPOSE 8088
 
 # Environment (postgres-bsn = docker container name)
-ENV DB_URL=jdbc:postgresql://postgres-bsn:5438/bsndb
+ENV DB_URL=jdbc:postgresql://postgres-bsn:5432/bsndb
 ENV ACTIVE_PROFILE=${PROFILE}
 ENV JAR_VERSION=${APP_VERSION}
 
 # Run the jar file
 CMD java -jar -Dspring.profiles.active=${ACTIVE_PROFILE} -Dspring.datasource.url=${DB_URL} bsn-backend-${JAR_VERSION}.jar
+
+# Build image by doing this cm : docker build -t bsn/bsn:1.0.0 -f ../docker/backend/Dockerfile .
