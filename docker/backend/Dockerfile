@@ -9,7 +9,9 @@ RUN mvn clean package -DskipTests
 # Runtime stage : jdk
 FROM amazoncorretto:17
 ARG PROFILE=dev
-ARG APP_VERSION=1.0.0
+
+# Must be updated always there is change
+ARG APP_VERSION=1.0.1
 
 # Copy the .jar file from build folder to app folder
 WORKDIR /app

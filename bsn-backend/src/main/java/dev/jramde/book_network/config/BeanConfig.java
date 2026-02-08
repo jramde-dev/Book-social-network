@@ -18,6 +18,7 @@ import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 
 @Configuration
@@ -63,7 +64,8 @@ public class BeanConfig {
         final UrlBasedCorsConfigurationSource urlSource = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowCredentials(true);
-        corsConfig.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
+        // corsConfig.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
+        corsConfig.setAllowedOrigins(List.of("http://localhost:4200", "http://localhost:8080"));
         corsConfig.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.ORIGIN,
                 HttpHeaders.CONTENT_TYPE,
