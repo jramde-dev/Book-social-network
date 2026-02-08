@@ -11,7 +11,7 @@ FROM amazoncorretto:17
 ARG PROFILE=dev
 
 # Must be updated always there is change
-ARG APP_VERSION=1.0.1
+ARG APP_VERSION=1.0.2
 
 # Copy the .jar file from build folder to app folder
 WORKDIR /app
