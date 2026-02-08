@@ -1,0 +1,27 @@
+# Build stage : we build and package our project
+FROM maven:3.8.7-openjdk-18 AS build
+WORKDIR /build
+COPY pom.xml .
+RUN mvn dependency:go-offline
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# Runtime stage : jdk
+FROM amazoncorretto:17
+ARG PROFILE=dev
+ARG APP_VERSION=1.0.0
+
+# Copy the .jar file from build folder to app folder
+WORKDIR /app
+COPY --from=build /build/target/bsn-backend-*.jar /app/
+
+### Expose application port
+EXPOSE 8080
+
+# Environment (postgres-bsn = docker container name)
+ENV DB_URL=jdbc:postgresql://postgres-bsn:5438/bsndb
+ENV ACTIVE_PROFILE=${PROFILE}
+ENV JAR_VERSION=${APP_VERSION}
+
+# Run the jar file
+CMD java -jar -Dspring.profiles.active=${ACTIVE_PROFILE} -Dspring.datasource.url=${DB_URL} bsn-backend-${JAR_VERSION}.jar
