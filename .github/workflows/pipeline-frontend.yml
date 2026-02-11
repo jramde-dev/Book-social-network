@@ -27,7 +27,7 @@ jobs:
           cd bsn-frontend
           echo "VERSION=$(jq -r '.version' package.json)" >> $GITHUB_OUTPUT
 
-      # Login to DockerHub
+      # Login to DockerHub with my credentials
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
