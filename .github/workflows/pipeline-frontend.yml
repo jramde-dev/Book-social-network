@@ -20,7 +20,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Extract project version
+      # Extract project version and store it in the variable VERSION
       - name: Extract project version
         id: extract_version
         run: |

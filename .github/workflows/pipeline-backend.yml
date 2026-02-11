@@ -101,6 +101,7 @@ jobs:
           cd bsn-backend
           ./mvnw clean package
 
+      # Extract project version and store it in the variable VERSION
       - name: Extract project version
         id: extract_version
         run: |
