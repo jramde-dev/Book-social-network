@@ -14,7 +14,7 @@ on:
 # Define the jobs
 jobs:
   compile:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     name: Compile Project
     steps:
       - name: Checkout Code
@@ -36,7 +36,7 @@ jobs:
 
   # Test the code
   unit-tests:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     name: Unit Tests
     steps:
       - name: Checkout Code
@@ -58,7 +58,7 @@ jobs:
 
   # Build the project
   build:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     name: Build Backend
     needs: [compile, unit-tests] # We need the build starts after the compile and the unit-tests
     steps:
@@ -81,7 +81,7 @@ jobs:
 
   # Build docker image
   build-image:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     name: Build Docker Image
     needs: [build]
     steps:
@@ -131,7 +131,7 @@ jobs:
   # Deploy the application
   deploy:
     name: Deploy Backend
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     needs: [build-image]
     steps:
       - name: Create Deployment Server
