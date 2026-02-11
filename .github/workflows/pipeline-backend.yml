@@ -55,7 +55,7 @@ jobs:
 #          ./mvnw clean test
 
 
-  # Build the project
+  # Build the API by doing ./mvnw clean package
   build:
     runs-on: ubuntu-latest
     name: Build Backend
