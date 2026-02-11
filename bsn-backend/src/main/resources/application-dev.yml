@@ -16,9 +16,11 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   # Mailing
+  # By using env variables, spring will try to read any environment variables
+  # from the system or project calling like that
   mail:
     host: ${EMAIL_HOSTNAME}
-    port: ${EMAIL_PORT}
+    port: 465
     username: ${EMAIL_USERNAME}
     password: ${EMAIL_PASSWORD}
     properties:
@@ -55,9 +57,10 @@ application:
     frontend:
       activation-url: http://localhost:4200/activate-account
 
-  # CORS : Localhost: Angular, Nginx; VPS: Backend, Frontend
+  # CORS : Localhost for Angular and Backend driven by Nginx;
+  # VPS: Use VPS_IP_ADDRESS for Angular loaded by Nginx and the Backend
   cors:
-    origins: http://localhost:4200,http://localhost:8080,http://my_ip_address:8088,http://my_ip_address:8080
+    origins: http://localhost:4200,http://localhost:8080,http://51.210.5.36:8080,http://51.210.5.36:8088
   file:
     upload:
       photos-output-path: ./uploads

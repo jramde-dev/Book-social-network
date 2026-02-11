@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>dev.jramde</groupId>
 	<artifactId>bsn-backend</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<name>book-network</name>
 	<description>Spring Boot API to handle books</description>
 	<url/>

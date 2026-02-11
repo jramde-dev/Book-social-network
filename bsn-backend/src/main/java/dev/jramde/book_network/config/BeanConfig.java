@@ -66,6 +66,8 @@ public class BeanConfig {
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource urlSource = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration corsConfig = new CorsConfiguration();
+
+        // Not recommanded. So externalize them
         // corsConfig.setAllowCredentials(true);
         // corsConfig.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
         // corsConfig.setAllowedOrigins(List.of("http://localhost:4200", "http://localhost:8080"));

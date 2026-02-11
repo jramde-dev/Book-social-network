@@ -1,0 +1,152 @@
+name: BSN Backend API Pipeline
+
+# Run the pipeline when we make a push
+on:
+  push:
+    branches:
+      - ci/pipeline
+    paths:
+      - bsn-backend/**
+      - docker/backend/**
+      - 'docker-compose.yml'
+      - .github/workflows/*-backend.yml
+
+# Define the jobs
+jobs:
+  compile:
+    runs-on: ubuntu
+    name: Compile Project
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup JDK
+        uses: actions/setup-jdk@v4
+        with:
+          java-version: 17
+          distribution: 'corretto'
+
+      - name: Compile Project
+        run: |
+          cd bsn-backend
+          ./mvnw clean compile
+
+
+  # Test the code
+  unit-tests:
+    runs-on: ubuntu
+    name: Unit Tests
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup JDK
+        uses: actions/setup-jdk@v4
+        with:
+          java-version: 17
+          distribution: 'corretto'
+
+      - name: Running Unit Tests
+        run: |
+          cd bsn-backend
+          ./mvnw clean test
+
+
+  # Build the project
+  build:
+    runs-on: ubuntu
+    name: Build Backend
+    needs: [compile, unit-tests] # We need the build starts after the compile and the unit-tests
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup JDK
+        uses: actions/setup-jdk@v4
+        with:
+          java-version: 17
+          distribution: 'corretto'
+
+      - name: Build project
+        run: |
+          cd bsn-backend
+          ./mvnw clean package
+
+
+  # Build docker image
+  build-image:
+    runs-on: ubuntu
+    name: Build Docker Image
+    needs: [build]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup JDK
+        uses: actions/setup-jdk@v4
+        with:
+          java-version: 17
+          distribution: 'corretto'
+
+      - name: Build project
+        run: |
+          cd bsn-backend
+          ./mvnw clean package
+
+      - name: Extract project version
+        id: extract_version
+        run: |
+          cd bsn-backend
+          echo "VERSION=$(./mvnw -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive exec:exec)" >> $GITHUB_OUTPUT
+
+      # Login to DockerHub
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      # Build & Push to DockerHub
+      - name: Build & Push to DockerHub
+        uses: docker/build-push-action@v3
+        with:
+          context: ./bsn-backend
+          file: ./docker/backend/Dockerfile
+          push: true
+          platforms: linux/amd64
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bsn-api:${{ steps.extract_version.outputs.VERSION }},${{ secrets.DOCKER_HUB_USERNAME }}/bsn-api:latest
+          build-args: |
+            PROFILE=dev
+            APP_VERSION=${{ steps.extract_version.outputs.VERSION }}
+
+
+  # Deploy the application
+  deploy:
+    name: Deploy Backend
+    runs-on: ubuntu
+    needs: [build-image]
+    steps:
+      - name: Create Deployment Server
+        run: ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "mkdir -p ci-cd"
+
+      - name: Copy docker-compose file
+        run: scp docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/docker-compose.yml
+
+      - name: Set environment variables and deploy
+        run: |
+          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} <<EOF
+          export EMAIL_HOSTNAME=${{ secrets.EMAIL_HOST_NAME}}
+          export EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME}}
+          export EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD}}
+          cd ci-cd
+          docker-compose -f docker-compose.yml pull -q
+          docker-compose -f docker-compose.yml up -d
+          EOF
