@@ -34,28 +34,28 @@ jobs:
           ./mvnw clean compile
 
   # Test the code
-#  unit-tests:
-#    runs-on: ubuntu-latest
-#    name: Unit Tests
-#    steps:
-#      - name: Checkout Code
-#        uses: actions/checkout@v5
-#        with:
-#          fetch-depth: 0
-#
-#      - name: Setup JDK
-#        uses: actions/setup-java@v5
-#        with:
-#          java-version: 17
-#          distribution: 'corretto'
-#
-#      - name: Running Unit Tests
-#        run: |
-#          cd bsn-backend
-#          ./mvnw clean test
+  unit-tests:
+    runs-on: ubuntu-latest
+    name: Unit Tests
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup JDK
+        uses: actions/setup-java@v5
+        with:
+          java-version: 17
+          distribution: 'corretto'
+
+      - name: Running Unit Tests
+        run: |
+          cd bsn-backend
+          ./mvnw clean test -DskipTests -Dspring.profiles.active=ci
 
 
-  # Build the API by doing ./mvnw clean package
+  # Build the API by doing ./mvnw clean package -DskipTests -Dspring.profiles.active=ci
   build:
     runs-on: ubuntu-latest
     name: Build Backend
@@ -76,7 +76,7 @@ jobs:
       - name: Build project
         run: |
           cd bsn-backend
-          ./mvnw clean package
+          ./mvnw clean package -DskipTests -Dspring.profiles.active=ci
 
 
   # Build docker image
@@ -99,7 +99,7 @@ jobs:
       - name: Build project
         run: |
           cd bsn-backend
-          ./mvnw clean package
+          ./mvnw clean package -DskipTests -Dspring.profiles.active=ci
 
       # Extract project version and store it in the variable VERSION
       - name: Extract project version
