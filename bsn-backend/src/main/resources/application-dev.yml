@@ -19,10 +19,10 @@ spring:
   # By using env variables, spring will try to read any environment variables
   # from the system or project calling like that
   mail:
-    host: ${EMAIL_HOSTNAME}
+    host: ${EMAIL_HOSTNAME:localhost}
+    username: ${EMAIL_USERNAME:dummy}
+    password: ${EMAIL_PASSWORD:dummy}
     port: 465
-    username: ${EMAIL_USERNAME}
-    password: ${EMAIL_PASSWORD}
     properties:
       mail:
         smtp:
@@ -33,22 +33,8 @@ spring:
         starttls:
           enable: true
     protocol: smtp
-#  mail:
-#    host: smtp.gmail.com
-#    port: 465
-#    username: restonspositifs2@gmail.com
-#    password: ygyp vpty seya lhmg
-#    properties:
-#      mail:
-#        smtp:
-#          auth: true
-#          ssl:
-#            enable: true
-#            trust: "*"
-#        starttls:
-#          enable: true
-#    protocol: smtp
 
+# Application config
 application:
   security:
     jwt:

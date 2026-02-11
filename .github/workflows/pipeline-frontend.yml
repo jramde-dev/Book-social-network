@@ -20,7 +20,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Extraire la version du projet
+      # Extract project version
       - name: Extract project version
         id: extract_version
         run: |
