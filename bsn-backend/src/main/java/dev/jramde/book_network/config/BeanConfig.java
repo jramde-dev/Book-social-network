@@ -66,15 +66,6 @@ public class BeanConfig {
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource urlSource = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration corsConfig = new CorsConfiguration();
-
-        // Not recommanded. So externalize them
-        // corsConfig.setAllowCredentials(true);
-        // corsConfig.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
-        // corsConfig.setAllowedOrigins(List.of("http://localhost:4200", "http://localhost:8080"));
-        // corsConfig.setAllowedHeaders(Arrays.asList(
-        //         HttpHeaders.ORIGIN, HttpHeaders.CONTENT_TYPE, HttpHeaders.ACCEPT, HttpHeaders.AUTHORIZATION));
-        // corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH"));
-
         corsConfig.setAllowedOrigins(allowedOrigins);
         corsConfig.setAllowedHeaders(Arrays.asList("*")); // Not recommended
         corsConfig.setAllowedMethods(Arrays.asList("*")); // Not recommended

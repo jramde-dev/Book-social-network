@@ -10,6 +10,7 @@ import {authGuard} from "../../core/guard/auth.guard";
 
 const routes: Routes = [
   {
+    // Main component
     path: "", component: MainComponent,
 
     // Because we want to display everything inside the main component
