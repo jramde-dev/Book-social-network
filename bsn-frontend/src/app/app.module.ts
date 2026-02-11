@@ -4,12 +4,13 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
-import { LoginComponent } from './auth-pages/login/login.component';
+import {LoginComponent} from './auth-pages/login/login.component';
 import {FormsModule} from "@angular/forms";
-import { RegisterComponent } from './auth-pages/register/register.component';
-import { ActivateAccountComponent } from './auth-pages/activate-account/activate-account.component';
+import {RegisterComponent} from './auth-pages/register/register.component';
+import {ActivateAccountComponent} from './auth-pages/activate-account/activate-account.component';
 import {CodeInputModule} from "angular-code-input";
 import {HttpTokenInterceptor} from "./core/interceptor/http-token.interceptor";
+import {ApiModule} from "./services/api.module";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {HttpTokenInterceptor} from "./core/interceptor/http-token.interceptor";
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    CodeInputModule
+    CodeInputModule,
+    ApiModule.forRoot({rootUrl: 'http://51.210.5.36:8088/api/v1'})
   ],
   providers: [
     HttpClient,
