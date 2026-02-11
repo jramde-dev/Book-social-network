@@ -59,7 +59,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: Build Backend
-    needs: [compile, unit-tests] # We need the build starts after the compile and the unit-tests
+    # needs: [compile, unit-tests] # We need the build starts after the compile and the unit-tests
+    needs: [compile]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v5

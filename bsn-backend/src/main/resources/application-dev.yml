@@ -18,6 +18,7 @@ spring:
   # Mailing
   # By using env variables, spring will try to read any environment variables
   # from the system or project calling like that
+  # localhost and dummy are default values before we up on prod
   mail:
     host: ${EMAIL_HOSTNAME:localhost}
     username: ${EMAIL_USERNAME:dummy}
