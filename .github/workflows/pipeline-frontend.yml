@@ -44,7 +44,7 @@ jobs:
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bsn-ui:${{ steps.extract_version.outputs.VERSION }},${{ secrets.DOCKER_HUB_USERNAME }}/bsn-ui:latest
 
-  # Deploy the application
+  # Deploy the application on the server
   deploy:
     name: Deploy Frontend
     runs-on: ubuntu-latest

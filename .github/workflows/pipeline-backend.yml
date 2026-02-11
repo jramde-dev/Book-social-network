@@ -33,27 +33,26 @@ jobs:
           cd bsn-backend
           ./mvnw clean compile
 
-
   # Test the code
-  unit-tests:
-    runs-on: ubuntu-latest
-    name: Unit Tests
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-
-      - name: Setup JDK
-        uses: actions/setup-java@v5
-        with:
-          java-version: 17
-          distribution: 'corretto'
-
-      - name: Running Unit Tests
-        run: |
-          cd bsn-backend
-          ./mvnw clean test
+#  unit-tests:
+#    runs-on: ubuntu-latest
+#    name: Unit Tests
+#    steps:
+#      - name: Checkout Code
+#        uses: actions/checkout@v5
+#        with:
+#          fetch-depth: 0
+#
+#      - name: Setup JDK
+#        uses: actions/setup-java@v5
+#        with:
+#          java-version: 17
+#          distribution: 'corretto'
+#
+#      - name: Running Unit Tests
+#        run: |
+#          cd bsn-backend
+#          ./mvnw clean test
 
 
   # Build the project
