@@ -20,12 +20,12 @@ services:
       timeout: 5s
       retries: 5
 
-  mail-dev:
-    container_name: mail-dev-bsn
-    image: maildev/maildev
-    ports:
-      - "1080:1080"
-      - "1025:1025"
+#  mail-dev:
+#    container_name: mail-dev-bsn
+#    image: maildev/maildev
+#    ports:
+#      - "1080:1080"
+#      - "1025:1025"
 
   # Config for building api container
   bsn-api:
