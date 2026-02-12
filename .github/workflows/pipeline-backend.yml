@@ -139,6 +139,7 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Configuration de la connexion SSH
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
