@@ -73,6 +73,7 @@ jobs:
         run: |
           ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} <<EOF
           cd ci-cd
+          echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
           docker compose -f docker-compose.yml pull -q
           docker compose -f docker-compose.yml up -d
           EOF
