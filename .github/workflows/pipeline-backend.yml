@@ -137,7 +137,7 @@ jobs:
         run: |
           echo "Username: ${{ secrets.VPS_USERNAME }}"
           echo "IP: ${{ secrets.VPS_IP }}"
-          echo "SSH Key length: ${#{{ secrets.SSH_PRIVATE_KEY }}}"
+          echo "SSH Key length: ${{ secrets.SSH_PRIVATE_KEY }}"
 
       - name: Setup SSH with verbose debug
         run: |
