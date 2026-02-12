@@ -71,6 +71,7 @@ jobs:
       - name: Copy docker-compose file
         run: scp -o StrictHostKeyChecking=no docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/docker-compose.yml
 
+      # Set environment variables and deploy
       - name: Set environment variables and deploy
         run: |
           ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} <<EOF

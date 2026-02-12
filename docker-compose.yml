@@ -30,7 +30,7 @@ services:
   # Config for building api container
   bsn-api:
     container_name: bsn-api
-    image: jramde/bsn:latest
+    image: jramde/bsn:1.0.0
     ports:
       - 8088:8088
     networks:
@@ -41,7 +41,7 @@ services:
   # Config to run the frontend app
   bsn-ui:
     container_name: bsn-ui
-    image: jramde/bsn-ui:latest
+    image: jramde/bsn-ui:1.0.0
     ports:
       - 8080:80 # 8080 is the port we'll use; 80 is the nginx default port
     networks:
