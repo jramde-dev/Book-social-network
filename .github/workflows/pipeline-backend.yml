@@ -11,7 +11,6 @@ on:
       - 'docker-compose.yml'
       - .github/workflows/*-backend.yml
 
-# Define the jobs
 jobs:
   compile:
     runs-on: ubuntu-latest
