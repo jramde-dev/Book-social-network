@@ -156,7 +156,7 @@ jobs:
 
       - name: Set environment variables and deploy
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} <<'EOF'
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} <<EOF
           export EMAIL_HOSTNAME=${{ secrets.EMAIL_HOST_NAME }}
           export EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME }}
           export EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}

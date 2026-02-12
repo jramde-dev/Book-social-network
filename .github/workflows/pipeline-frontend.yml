@@ -48,13 +48,14 @@ jobs:
   deploy:
     name: Deploy Frontend
     runs-on: ubuntu-latest
-    needs: [build-image]
+    needs: [ build-image ]
     steps:
       - name: Checkout Code # Corrigera les problèmes d'arborescence de fichiers
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
+      # Setup SSH connection
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
