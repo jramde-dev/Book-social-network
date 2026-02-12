@@ -68,6 +68,7 @@ jobs:
       - name: Create Deployment folder
         run: ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "mkdir -p ci-cd"
 
+      # Copy docker-compose file
       - name: Copy docker-compose file
         run: scp -o StrictHostKeyChecking=no docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/docker-compose.yml
 

@@ -30,7 +30,7 @@ services:
   # Config for building api container
   bsn-api:
     container_name: bsn-api
-    image: jramde/bsn:1.0.0
+    image: jramde/bsn-api:1.0.0
     ports:
       - 8088:8088
     networks:
