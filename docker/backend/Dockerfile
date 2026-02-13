@@ -9,7 +9,6 @@ RUN mvn clean package -DskipTests
 # Runtime stage : jdk
 FROM amazoncorretto:17
 ARG PROFILE=dev
-
 # Must be updated always there is change
 ARG APP_VERSION=1.0.3
 
@@ -22,6 +21,8 @@ EXPOSE 8088
 
 # Environment (postgres-bsn = docker container name)
 ENV DB_URL=jdbc:postgresql://postgres-bsn:5432/bsndb
+ENV MAILDEV_URL=localhost
+
 ENV ACTIVE_PROFILE=${PROFILE}
 ENV JAR_VERSION=${APP_VERSION}
 ENV EMAIL_HOSTNAME=missing_hostname

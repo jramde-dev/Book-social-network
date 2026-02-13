@@ -30,9 +30,15 @@ services:
   # Config for building api container
   bsn-api:
     container_name: bsn-api
-    image: jramde/bsn-api:1.0.0
+    image: jramde/bsn-api:1.0.1
+    environment:
+      - EMAIL_HOSTNAME=${EMAIL_HOSTNAME}
+      - EMAIL_USERNAME=${EMAIL_USERNAME}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
     ports:
       - 8088:8088
+    volumes:
+      - bsn-api-storage: /app/uploads
     networks:
       - spring-demo
     depends_on:
