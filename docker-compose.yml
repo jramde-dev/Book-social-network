@@ -38,7 +38,7 @@ services:
     ports:
       - 8088:8088
     volumes:
-      - bsn-api-storage: /app/uploads
+      - bsn-api-storage:/app/uploads
     networks:
       - spring-demo
     depends_on:
@@ -61,4 +61,6 @@ networks:
 
 volumes:
   postgres:
+    driver: local
+  bsn-api-storage:
     driver: local
