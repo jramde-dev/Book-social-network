@@ -23,7 +23,7 @@ spring:
     host: ${EMAIL_HOSTNAME:localhost}
     username: ${EMAIL_USERNAME:dummy}
     password: ${EMAIL_PASSWORD:dummy}
-    port: 587
+    port: 465
     properties:
       mail:
         smtp:
