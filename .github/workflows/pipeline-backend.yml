@@ -160,6 +160,7 @@ jobs:
           export EMAIL_HOSTNAME=${{ secrets.EMAIL_HOST_NAME }}
           export EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME }}
           export EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
+          export EMAIL_PORT=${{ secrets.EMAIL_PORT }}
           cd ci-cd
           echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
           docker compose -f docker-compose.yml pull -q

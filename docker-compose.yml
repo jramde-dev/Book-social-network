@@ -32,6 +32,7 @@ services:
     container_name: bsn-api
     image: jramde/bsn-api:1.0.5
     environment:
+      EMAIL_PORT: ${EMAIL_PORT}
       EMAIL_HOSTNAME: ${EMAIL_HOSTNAME}
       EMAIL_USERNAME: ${EMAIL_USERNAME}
       EMAIL_PASSWORD: ${EMAIL_PASSWORD}
