@@ -30,7 +30,7 @@ services:
   # Config for building api container
   bsn-api:
     container_name: bsn-api
-    image: jramde/bsn-api:1.0.4
+    image: jramde/bsn-api:1.0.5
     environment:
       ACTIVE_PROFILE: dev
       EMAIL_HOSTNAME: ${EMAIL_HOSTNAME}
