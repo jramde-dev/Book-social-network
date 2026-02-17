@@ -28,6 +28,7 @@ public class BeanConfig {
     // From security.core.userdetails
     private final UserDetailsService userDetailsService;
 
+    // Contains all the urls the backend accepts
     @Value("${application.cors.origins}")
     private List<String> allowedOrigins;
 
